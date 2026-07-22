@@ -1,0 +1,54 @@
+{
+    "name": "la-souris/document-signer-laravel",
+    "description": "Laravel integration for the document signer SDK: config, service provider, manager, facade, and webhook routes for ValidSign and DocuSign.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Laurens Laman",
+            "email": "l.laman@lasourisscooters.nl"
+        }
+    ],
+    "require": {
+        "php": "^8.5",
+        "la-souris/document-signer-sdk": "^1.0",
+        "illuminate/contracts": "^13.0",
+        "illuminate/support": "^13.0",
+        "illuminate/http": "^13.0",
+        "illuminate/routing": "^13.0"
+    },
+    "require-dev": {
+        "la-souris/document-signer-validsign": "^1.0",
+        "la-souris/document-signer-docusign": "^1.0",
+        "orchestra/testbench": "^11.0",
+        "phpunit/phpunit": "^11.0",
+        "spatie/browsershot": "^4.0 || ^5.0",
+        "spatie/laravel-pdf": "^1.0 || ^2.0"
+    },
+    "suggest": {
+        "la-souris/document-signer-validsign": "Required to use the `validsign` driver.",
+        "la-souris/document-signer-docusign":  "Required to use the `docusign` driver.",
+        "spatie/laravel-pdf":                     "Required to use the `laravel-pdf` PDF renderer (uses the application's spatie/laravel-pdf configuration instead of plain Browsershot)."
+    },
+    "autoload": {
+        "psr-4": {
+            "LaSouris\\DocumentSigner\\Laravel\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LaSouris\\DocumentSigner\\Laravel\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaSouris\\DocumentSigner\\Laravel\\DocumentSignerServiceProvider"
+            ],
+            "aliases": {
+                "DocumentSigner": "LaSouris\\DocumentSigner\\Laravel\\Facades\\DocumentSigner"
+            }
+        }
+    },
+    "minimum-stability": "stable"
+}
