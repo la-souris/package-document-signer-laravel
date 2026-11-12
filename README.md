@@ -196,6 +196,18 @@ to the raw placeholder token so contracts read like normal HTML:
 | `<x-document-signer::date signer="…" name="…" />` | `{[date:…:…]}` |
 | `<x-document-signer::checkbox signer="…" name="…" />` | `{[checkbox:…:…]}` |
 
+Every component also accepts an `optional` attribute. It prefixes the token
+with `?`, which the SDK parser reads as "the signer may leave this field
+empty":
+
+```blade
+<x-document-signer::text signer="customer" name="bic" optional />
+{{-- compiles to {[?text:customer:bic]} --}}
+```
+
+`:optional="$condition"` works too; `optional="false"` and `:optional="false"`
+leave the field required.
+
 The components are registered under the `document-signer::` namespace by the
 service provider. Both `signer` and `name` are required attributes. After the
 view renders, the resulting HTML is what you pass to `Document::$html` — the

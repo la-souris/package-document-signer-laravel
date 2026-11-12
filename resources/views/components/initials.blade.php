@@ -1,2 +1,2 @@
-@props(['signer', 'name'])
-{[initials:{{ $signer }}:{{ $name }}]}
+@props(['signer', 'name', 'optional' => false])
+{[{{ filter_var($optional, FILTER_VALIDATE_BOOL) ? '?' : '' }}initials:{{ $signer }}:{{ $name }}]}
