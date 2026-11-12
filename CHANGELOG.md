@@ -3,7 +3,7 @@
 All notable changes to `la-souris/document-signer-laravel` are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [1.1.0] - 2026-11-12
 
 ### Added
 
@@ -11,6 +11,10 @@ This project adheres to [Semantic Versioning](https://semver.org/).
   (`<x-document-signer::text … optional />`). It compiles to the SDK's optional
   placeholder `{[?type:signer:name]}`, so templates no longer need a hand-written
   token for a field the signer may leave empty.
+
+### Changed
+
+- Dev requirement `phpunit/phpunit` now also allows `^13.0`.
 
 ## [1.0.0] - 2026-07-22
 
