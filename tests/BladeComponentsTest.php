@@ -56,6 +56,43 @@ final class BladeComponentsTest extends TestCase
     }
 
     #[Test]
+    #[DataProvider('optionalComponentCases')]
+    public function the_optional_attribute_prefixes_the_token_with_a_question_mark(
+        string $componentTemplate,
+        string $expectedToken,
+    ): void {
+        $rendered = trim(Blade::render($componentTemplate));
+
+        self::assertSame($expectedToken, $rendered);
+    }
+
+    /**
+     * @return iterable<string, array{string, string}>
+     */
+    public static function optionalComponentCases(): iterable
+    {
+        foreach (['signature', 'initials', 'text', 'date', 'checkbox'] as $type) {
+            yield "{$type} (bare attribute)" => [
+                "<x-document-signer::{$type} signer=\"customer\" name=\"field\" optional />",
+                "{[?{$type}:customer:field]}",
+            ];
+        }
+
+        yield 'bound true' => [
+            '<x-document-signer::text signer="customer" name="bic" :optional="true" />',
+            '{[?text:customer:bic]}',
+        ];
+        yield 'bound false' => [
+            '<x-document-signer::text signer="customer" name="bic" :optional="false" />',
+            '{[text:customer:bic]}',
+        ];
+        yield 'string false' => [
+            '<x-document-signer::text signer="customer" name="bic" optional="false" />',
+            '{[text:customer:bic]}',
+        ];
+    }
+
+    #[Test]
     public function multiple_components_in_one_template_all_compile(): void
     {
         $rendered = Blade::render(

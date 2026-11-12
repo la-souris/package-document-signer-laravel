@@ -3,6 +3,15 @@
 All notable changes to `la-souris/document-signer-laravel` are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+
+- `optional` attribute on every Blade field component
+  (`<x-document-signer::text … optional />`). It compiles to the SDK's optional
+  placeholder `{[?type:signer:name]}`, so templates no longer need a hand-written
+  token for a field the signer may leave empty.
+
 ## [1.0.0] - 2026-07-22
 
 Initial public release.
